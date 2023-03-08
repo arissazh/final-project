@@ -1,11 +1,86 @@
-let ball, floor, walls;
-// let balltypes = {'white': 20, 'lightblue': 50, 'lightpink': 60};
-let outLine;
-let grape, cherry, orange, lemon, kiwi, tomato, peach, starfruit, coconut, melon, watermelon;
-var score = 0;
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { doc, getFirestore, collection, addDoc, getDocs, query, where, orderBy, getDocFromCache, limit} from "firebase/firestore";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBU5ujNJyakYRgFzXv70sg88mDoaD-Xin4",
+  authDomain: "fruit-game-2d865.firebaseapp.com",
+  projectId: "fruit-game-2d865",
+  storageBucket: "fruit-game-2d865.appspot.com",
+  messagingSenderId: "210965526089",
+  appId: "1:210965526089:web:026923732c7e1e24b77198"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// sends score and username information to database
+async function sendScore(username) {
+    // console.log("in send score")
+    // let username = id('UserName').value;
+    // console.log(username)
+    try {
+        const docRef = await addDoc(collection(db, "players"), {
+          username: username,
+          score: score,
+        });
+        console.log("Document written with ID: ", docRef.id);
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
+}
+
+// document.getElementById("submit-button").addEventListener("click", sendScore)
+
+// set bounds
+let ball, floor, walls;
+// set endgame line
+let outLine;
+// set different ball types
+let grape, cherry, orange, lemon, kiwi, tomato, peach, starfruit, coconut, melon, watermelon;
+// initialize score
+var score = 0;
+// game over screen
+let GOScreen;
+
+
+// create leaderboard of scores
+function createLi(name, score){
+    let li = document.createElement("li");
+    // creates HTML ordered list for leaderboard
+    // TODO: STYLE
+    li.innerHTML = name + " : " + score;
+    return li;
+}
+
+// helper function to get element id name
+const id = (name) => {
+    return document.getElementById(name);
+}
+
+// wait before game over
+window.addEventListener('load',() => {
+    
+    GOScreen = id("gameover");
+    id("submit").addEventListener('submit', (e) => {
+        e.preventDefault()
+        
+        let username = id('user-name').value;
+        // console.log(username);
+        sendScore(username)
+
+    })
+
+    
+})
+
+// game setup 
 window.setup = () => {
-    createCanvas(windowWidth / 4, windowHeight);
+    createCanvas(1 + windowHeight / 2, windowHeight);
     world.gravity.y = 10;
 
     floor = new Sprite();
@@ -18,7 +93,8 @@ window.setup = () => {
 
     outLine = new Sprite();
     outLine.width = width;
-    outLine.y = 50;
+    outLine.y = height / 8;
+    // outLine.y = 500;
     outLine.height = 5;
     outLine.stroke = 'none';
     outLine.color = 'rgb(235, 64, 52)';
@@ -179,7 +255,6 @@ function combine(ball1, ball2) {
     
 }
 
-
 function getRandom(){
     var num = Math.random();
     if(num < 0.45) return grape;  //probability 0.3
@@ -190,23 +265,51 @@ function getRandom(){
 }
 
 function endGame() {
-    textSize(32);
-    textAlign(CENTER);
-    fill('black');
-    stroke(5);
-    text('game over', width / 2, height / 2);
-    textSize(16);
-    text
-    text('your score = ' + score, width / 2, height / 2 + 50);
 	noLoop();
+    GOScreen.style.display="flex";
+    id("score").innerHTML =  "your score: " + score;
+    // const data = {array: [{user:"Arissa", score:12222},{user:"Chris", score:2}]}
+    // const data = getScore();
+
+    // const player = collection(db, "players");
+    // const scoreData = query(player, orderBy("score"), limit(3));
+    // const topScores = getScore();
+    getScore();
+    // console.log(topScores);
+    // getScore();
+    // let leaderboard = id("LB-list");
+    // topScores.allScores.forEach(({username, score}) => {
+    //     let li = createLi(username, score);
+    //     leaderboard.appendChild(li);
+    // });
 }
+
+async function getScore() {
+    const q = query(collection(db, "players"), orderBy("score", "desc"), limit(5));
+    const querySnapshot = await getDocs(q);
+    const data = {allScores: []};
+
+    querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+        data.allScores.push(doc.data());
+        // console.log(doc.data());
+    });
+    // console.log(data);
+    // return data;
+    let leaderboard = id("LB-list");
+    data.allScores.forEach(({username, score}) => {
+        let li = createLi(username, score);
+        leaderboard.appendChild(li);
+    });
+}
+
 
 function startGame() {
     text("your score = " + score, width - 100, height / 25);
-    fruit = getRandom();
+    var fruit = getRandom();
 
     if (mouse.presses()) {
-       new fruit.Sprite(mouse.x, height / 4);
+       new fruit.Sprite(mouse.x,  height/4);
     } 
 
     if (ball.overlaps(outLine, endGame));
