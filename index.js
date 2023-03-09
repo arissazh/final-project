@@ -15377,8 +15377,8 @@ window.setup = () => {
 
     outLine = new Sprite();
     outLine.width = width;
-    // outLine.y = height / 8;
-    outLine.y = 500;
+    outLine.y = height / 8;
+    // outLine.y = 500;
     outLine.height = 5;
     outLine.stroke = 'none';
     outLine.color = 'rgb(235, 64, 52)';
