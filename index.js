@@ -2520,7 +2520,7 @@ function U$1(a){a.g||(a.g=new Map,a.h=0,a.i&&Fc$1(a.i,function(b,c){a.add(decode
 k$1.forEach=function(a,b){U$1(this);this.g.forEach(function(c,d){c.forEach(function(e){a.call(b,e,d,this);},this);},this);};k$1.oa=function(){U$1(this);const a=Array.from(this.g.values()),b=Array.from(this.g.keys()),c=[];for(let d=0;d<b.length;d++){const e=a[d];for(let f=0;f<e.length;f++)c.push(b[d]);}return c};k$1.W=function(a){U$1(this);let b=[];if("string"===typeof a)Uc$1(this,a)&&(b=b.concat(this.g.get(V$1(this,a))));else {a=Array.from(this.g.values());for(let c=0;c<a.length;c++)b=b.concat(a[c]);}return b};
 k$1.set=function(a,b){U$1(this);this.i=null;a=V$1(this,a);Uc$1(this,a)&&(this.h-=this.g.get(a).length);this.g.set(a,[b]);this.h+=1;return this};k$1.get=function(a,b){if(!a)return b;a=this.W(a);return 0<a.length?String(a[0]):b};function fc$1(a,b,c){Tc(a,b);0<c.length&&(a.i=null,a.g.set(V$1(a,b),ma$1(c)),a.h+=c.length);}
 k$1.toString=function(){if(this.i)return this.i;if(!this.g)return "";const a=[],b=Array.from(this.g.keys());for(var c=0;c<b.length;c++){var d=b[c];const f=encodeURIComponent(String(d)),h=this.W(d);for(d=0;d<h.length;d++){var e=f;""!==h[d]&&(e+="="+encodeURIComponent(String(h[d])));a.push(e);}}return this.i=a.join("&")};function V$1(a,b){b=String(b);a.j&&(b=b.toLowerCase());return b}
-function Qc$1(a,b){b&&!a.j&&(U$1(a),a.i=null,a.g.forEach(function(c,d){var e=d.toLowerCase();d!=e&&(Tc(this,d),fc$1(this,e,c));},a));a.j=b;}var Vc$1=class Vc{constructor(a,b){this.h=a;this.g=b;}};function Wc$1(a){this.l=a||Xc;l.PerformanceNavigationTiming?(a=l.performance.getEntriesByType("navigation"),a=0<a.length&&("hq"==a[0].nextHopProtocol||"h2"==a[0].nextHopProtocol)):a=!!(l.g&&l.g.Ga&&l.g.Ga()&&l.g.Ga().$b);this.j=a?this.l:1;this.g=null;1<this.j&&(this.g=new Set);this.h=null;this.i=[];}var Xc=10;function Yc(a){return a.h?!0:a.g?a.g.size>=a.j:!1}function uc$1(a){return a.h?1:a.g?a.g.size:0}function qc$1(a,b){return a.h?a.h==b:a.g?a.g.has(b):!1}function vc$1(a,b){a.g?a.g.add(b):a.h=b;}
+function Qc$1(a,b){b&&!a.j&&(U$1(a),a.i=null,a.g.forEach(function(c,d){var e=d.toLowerCase();d!=e&&(Tc(this,d),fc$1(this,e,c));},a));a.j=b;}var Vc$1=class{constructor(a,b){this.h=a;this.g=b;}};function Wc$1(a){this.l=a||Xc;l.PerformanceNavigationTiming?(a=l.performance.getEntriesByType("navigation"),a=0<a.length&&("hq"==a[0].nextHopProtocol||"h2"==a[0].nextHopProtocol)):a=!!(l.g&&l.g.Ga&&l.g.Ga()&&l.g.Ga().$b);this.j=a?this.l:1;this.g=null;1<this.j&&(this.g=new Set);this.h=null;this.i=[];}var Xc=10;function Yc(a){return a.h?!0:a.g?a.g.size>=a.j:!1}function uc$1(a){return a.h?1:a.g?a.g.size:0}function qc$1(a,b){return a.h?a.h==b:a.g?a.g.has(b):!1}function vc$1(a,b){a.g?a.g.add(b):a.h=b;}
 function xc$1(a,b){a.h&&a.h==b?a.h=null:a.g&&a.g.has(b)&&a.g.delete(b);}Wc$1.prototype.cancel=function(){this.i=Zc(this);if(this.h)this.h.cancel(),this.h=null;else if(this.g&&0!==this.g.size){for(const a of this.g.values())a.cancel();this.g.clear();}};function Zc(a){if(null!=a.h)return a.i.concat(a.h.D);if(null!=a.g&&0!==a.g.size){let b=a.i;for(const c of a.g.values())b=b.concat(c.D);return b}return ma$1(a.i)}function $c(){}$c.prototype.stringify=function(a){return l.JSON.stringify(a,void 0)};$c.prototype.parse=function(a){return l.JSON.parse(a,void 0)};function ad(){this.g=new $c;}function bd(a,b,c){const d=c||"";try{Dc$1(a,function(e,f){let h=e;p(e)&&(h=lb(e));b.push(d+f+"="+encodeURIComponent(h));});}catch(e){throw b.push(d+"type="+encodeURIComponent("_badmap")),e;}}function cd(a,b){const c=new Gb;if(l.Image){const d=new Image;d.onload=ia$1(dd,c,d,"TestLoadImage: loaded",!0,b);d.onerror=ia$1(dd,c,d,"TestLoadImage: error",!1,b);d.onabort=ia$1(dd,c,d,"TestLoadImage: abort",!1,b);d.ontimeout=ia$1(dd,c,d,"TestLoadImage: timeout",!1,b);l.setTimeout(function(){if(d.ontimeout)d.ontimeout();},1E4);d.src=a;}else b(!1);}function dd(a,b,c,d,e){try{b.onload=null,b.onerror=null,b.onabort=null,b.ontimeout=null,e(d);}catch(f){}}function ed(a){this.l=a.ac||null;this.j=a.jb||!1;}t(ed,Sb);ed.prototype.g=function(){return new fd(this.l,this.j)};ed.prototype.i=function(a){return function(){return a}}({});function fd(a,b){B$1.call(this);this.D=a;this.u=b;this.m=void 0;this.readyState=gd;this.status=0;this.responseType=this.responseText=this.response=this.statusText="";this.onreadystatechange=null;this.v=new Headers;this.h=null;this.C="GET";this.B="";this.g=!1;this.A=this.j=this.l=null;}t(fd,B$1);var gd=0;k$1=fd.prototype;
 k$1.open=function(a,b){if(this.readyState!=gd)throw this.abort(),Error("Error reopening a connection");this.C=a;this.B=b;this.readyState=1;hd(this);};k$1.send=function(a){if(1!=this.readyState)throw this.abort(),Error("need to call open() first. ");this.g=!0;const b={headers:this.v,method:this.C,credentials:this.m,cache:void 0};a&&(b.body=a);(this.D||l).fetch(new Request(this.B,b)).then(this.Wa.bind(this),this.ga.bind(this));};
 k$1.abort=function(){this.response=this.responseText="";this.v=new Headers;this.status=0;this.j&&this.j.cancel("Request was aborted.").catch(()=>{});1<=this.readyState&&this.g&&4!=this.readyState&&(this.g=!1,id$1(this));this.readyState=gd;};
@@ -15313,6 +15313,8 @@ async function sendScore(username) {
           score: score,
         });
         console.log("Document written with ID: ", docRef.id);
+        let btn = id("submit-button");
+        btn.disabled=true;
       } catch (e) {
         console.error("Error adding document: ", e);
       }
@@ -15322,10 +15324,11 @@ async function sendScore(username) {
 
 // set bounds
 let ball, floor, walls;
+let current, preview;
 // set endgame line
 let outLine;
 // set different ball types
-let grape, cherry, orange, lemon, kiwi, tomato, peach, starfruit, coconut, melon, watermelon;
+let grape, cherry, orange, lemon, kiwi, tomato, peach, cantaloupe, coconut, melon, watermelon;
 // initialize score
 var score = 0;
 // game over screen
@@ -15379,7 +15382,7 @@ window.setup = () => {
     outLine.width = width;
     outLine.y = height / 8;
     // outLine.y = 500;
-    outLine.height = 5;
+    outLine.height = 3;
     outLine.stroke = 'none';
     outLine.color = 'rgb(235, 64, 52)';
     outLine.collider = 'static';
@@ -15391,57 +15394,57 @@ window.setup = () => {
     // ball.stroke = 'none';
 
     grape = new ball.Group();
-    grape.diameter = 20;
+    grape.diameter = windowHeight / 26;
     grape.img = 'assets/grape.png';
     grape.color = 'purple';
 
     cherry = new ball.Group();
-    cherry.diameter = 30;
+    cherry.diameter = windowHeight / 24;
     cherry.img = 'assets/cherry.png';
     cherry.color = 'red';
 
     orange = new ball.Group();
-    orange.diameter = 45;
+    orange.diameter = windowHeight / 16;
     orange.img = 'assets/orange.png';
     orange.color = 'orange';
 
     lemon = new ball.Group();
-    lemon.diameter = 55;
+    lemon.diameter = windowHeight / 13;
     lemon.img = 'assets/lemon.png';
     lemon.color = 'yellow';
 
     kiwi = new ball.Group();
-    kiwi.diameter = 70;
+    kiwi.diameter = windowHeight / 10;
     kiwi.img = 'assets/kiwi.png';
     kiwi.color = 'green';
 
     tomato = new ball.Group();
-    tomato.diameter = 85;
+    tomato.diameter = windowHeight / 8.5;
     tomato.img = 'assets/tomato.png';
     tomato.color = 'rgb(219,196,255)';
 
     peach = new ball.Group();
-    peach.diameter = 100;
+    peach.diameter = window / 7;
     peach.img = 'assets/peach.png';
     peach.color = 'pink';
 
-    starfruit = new ball.Group();
-    starfruit.diameter = 150;
-    starfruit.img = 'assets/starfruit.png';
-    starfruit.color = 'light yellow';
+    cantaloupe = new ball.Group();
+    cantaloupe.diameter = windowHeight / 4.8;
+    cantaloupe.img = 'assets/starfruit.png';
+    cantaloupe.color = 'light yellow';
 
     coconut = new ball.Group();
-    coconut.diameter = 185;
+    coconut.diameter = windowHeight / 3.9;
     coconut.img = 'assets/coconut.png';
     coconut.color = 'white';
 
     melon = new ball.Group();
-    melon.diameter = 200;
+    melon.diameter = windowHeight / 3.6;
     melon.img = 'assets/melon.png';
     melon.color = 'green';
 
     watermelon = new ball.Group();
-    watermelon.diameter = 250;
+    watermelon.diameter = windowHeight / 2.9;
     watermelon.img = 'assets/watermelon.png';
     watermelon.color = 'red';
 
@@ -15459,83 +15462,78 @@ function setupBounds() {
       "static"
     );
   
-    walls.color = 'purple';
+    walls.color = 'black';
 
   }
 
 function combine(ball1, ball2) {
-    if (ball1.diameter == 20) {
+    if (ball1.diameter == windowHeight / 26) {
         new cherry.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 2;
     }
-    if (ball1.diameter == 30) {
+    if (ball1.diameter == windowHeight / 24) {
         new orange.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 4;
     }
-    if (ball1.diameter == 45) {
+    if (ball1.diameter == windowHeight / 16) {
         new lemon.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 8;
     }
-    if (ball1.diameter == 55) {
+    if (ball1.diameter == windowHeight / 13) {
         new kiwi.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 16;
     }
 
-    if (ball1.diameter == 70) {
+    if (ball1.diameter == windowHeight / 10) {
         new tomato.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 32;
     }
 
-    if (ball1.diameter == 85) {
+    if (ball1.diameter == windowHeight / 8.5) {
         new peach.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 64;
     }
 
-    if (ball1.diameter == 100) {
-        new starfruit.Sprite(ball1.x, ball1.y);
+    if (ball1.diameter == windowHeight / 7) {
+        new cantaloupe.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 128;
     }
 
-    if (ball1.diameter == 150) {
+    if (ball1.diameter == windowHeight / 4.8) {
         new coconut.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 256;
     }
 
-    if (ball1.diameter == 185) {
+    if (ball1.diameter == windowHeight / 3.9) {
         new melon.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 1028;
     }
 
-    if (ball1.diameter == 200) {
+    if (ball1.diameter == windowHeight / 3.6) {
         new watermelon.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 2048;
+        // add animation effects ?
     }
-
-    /* if (ball1.diameter == 80) {
-        new kiwi.Sprite(ball1.x, ball1.y);
-        ball1.remove();
-        ball2.remove();
-    } */
     
 }
 
@@ -15552,20 +15550,7 @@ function endGame() {
 	noLoop();
     GOScreen.style.display="flex";
     id("score").innerHTML =  "your score: " + score;
-    // const data = {array: [{user:"Arissa", score:12222},{user:"Chris", score:2}]}
-    // const data = getScore();
-
-    // const player = collection(db, "players");
-    // const scoreData = query(player, orderBy("score"), limit(3));
-    // const topScores = getScore();
     getScore();
-    // console.log(topScores);
-    // getScore();
-    // let leaderboard = id("LB-list");
-    // topScores.allScores.forEach(({username, score}) => {
-    //     let li = createLi(username, score);
-    //     leaderboard.appendChild(li);
-    // });
 }
 
 async function getScore() {
@@ -15578,8 +15563,6 @@ async function getScore() {
         data.allScores.push(doc.data());
         // console.log(doc.data());
     });
-    // console.log(data);
-    // return data;
     let leaderboard = id("LB-list");
     data.allScores.forEach(({username, score}) => {
         let li = createLi(username, score);
@@ -15589,12 +15572,41 @@ async function getScore() {
 
 
 function startGame() {
-    text("your score = " + score, width - 100, height / 25);
+    fill('red');
+    textSize(windowHeight / 70);
+    text("combine as many fruits as you can without touching the line!", width / 50, height / 40);
+    text("hold click to preview, release to drop fruits! ", width / 50, height / 25);
+    textSize(windowHeight / 50);
+    fill('black');
+    text("your score = " + score, width / 50, height / 9);
     var fruit = getRandom();
+    // console.log("fruit" + fruit);
+    // console.log("current is cleared: " + current);
 
+    // console.log("current is:" + current);
+    // let dropped = false;
+    // new fruit.Sprite(mouse.x,  height/4);
+    // fruit.collder = 'static';
+    //while (dropped == false) {
+    /*    current = new fruit.Sprite(mouse.x,  height/4, 'kinetic');
+        if (mouse.presses()) {
+            current.moveTo(mouse, 8);
+        }
+    //}
+    */
+    // fruit.moveTowards(mouse, 0.10);
+    // fruitPreview(fruit);
+    
     if (mouse.presses()) {
-       new fruit.Sprite(mouse.x,  height/4);
+        current = fruit;
+        preview = new fruit.Sprite(width - (width / 8), height / 20, 'static');
+    }
+    if (mouse.released()) {
+        preview.remove();
+        new current.Sprite(mouse.x,  height/4);
+        // dropFruit(fruit, current)
     } 
+
 
     if (ball.overlaps(outLine, endGame));
 
@@ -15613,7 +15625,7 @@ window.draw = () => {
     kiwi.overlaps(kiwi, combine);
     tomato.overlaps(tomato, combine);
     peach.overlaps(peach, combine);
-    starfruit.overlaps(starfruit, combine);
+    cantaloupe.overlaps(cantaloupe, combine);
     coconut.overlaps(coconut, combine);
     melon.overlaps(melon, combine);
 };
