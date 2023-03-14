@@ -3,39 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <title>lil minigame ◡̈</title>
-    <style>
-      /* * {
-        border: 1px magenta;
-      } */
-      body {
-        margin: 0;
-        overflow: hidden;
-        vertical-align: middle;
-        display: flex;
-        justify-content: center;
-      }
-
-      main {
-        display: flex;
-        width: fit-content;
-        position: relative;
-      }
-
-      #gameover {
-        color: white;
-        background-color: black;
-        opacity: .6;
-        display: none;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-
-        transition: opacity 1s;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Lao:wght@300;400&family=Roboto+Slab&display=swap" rel="stylesheet">
   </head>
   <body>
     <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script>
@@ -52,13 +23,16 @@
         <h1>GAME OVER</h1>
         <h3 id="score"></h3>
 
-        <form id="submit">
-          <label for="user-name">your name</label><br>
-          <input type="text" id="user-name" name='name' required>
-          <button id="submit-button">Submit!</button>
-        </form>
+        <div id="game-info">
+          <form id="submit">
+            <label for="user-name">save your score</label><br>
+            <input type="text" id="user-name" name='name' placeholder="enter name" required>
+            <button id="submit-button">save!</button>
+          </form>
+        </div>
 
         <div id="leaderboard">
+          <h3 id="lb">top players</h3>
           <ol id="LB-list">
             
           </ol>

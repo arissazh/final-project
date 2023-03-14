@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { doc, getFirestore, collection, addDoc, getDocs, query, where, orderBy, getDocFromCache, limit} from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit} from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -29,6 +29,8 @@ async function sendScore(username) {
           score: score,
         });
         console.log("Document written with ID: ", docRef.id);
+        let btn = id("submit-button");
+        btn.disabled=true;
       } catch (e) {
         console.error("Error adding document: ", e);
       }
@@ -38,10 +40,11 @@ async function sendScore(username) {
 
 // set bounds
 let ball, floor, walls;
+let current, preview;
 // set endgame line
 let outLine;
 // set different ball types
-let grape, cherry, orange, lemon, kiwi, tomato, peach, starfruit, coconut, melon, watermelon;
+let grape, cherry, orange, lemon, kiwi, tomato, peach, cantaloupe, coconut, melon, watermelon;
 // initialize score
 var score = 0;
 // game over screen
@@ -95,7 +98,7 @@ window.setup = () => {
     outLine.width = width;
     outLine.y = height / 8;
     // outLine.y = 500;
-    outLine.height = 5;
+    outLine.height = 3;
     outLine.stroke = 'none';
     outLine.color = 'rgb(235, 64, 52)';
     outLine.collider = 'static';
@@ -107,57 +110,57 @@ window.setup = () => {
     // ball.stroke = 'none';
 
     grape = new ball.Group();
-    grape.diameter = 20;
+    grape.diameter = windowHeight / 26;
     grape.img = 'assets/grape.png';
     grape.color = 'purple';
 
     cherry = new ball.Group();
-    cherry.diameter = 30;
+    cherry.diameter = windowHeight / 24;
     cherry.img = 'assets/cherry.png';
     cherry.color = 'red';
 
     orange = new ball.Group();
-    orange.diameter = 45;
+    orange.diameter = windowHeight / 16;
     orange.img = 'assets/orange.png';
     orange.color = 'orange';
 
     lemon = new ball.Group();
-    lemon.diameter = 55;
+    lemon.diameter = windowHeight / 13;
     lemon.img = 'assets/lemon.png';
     lemon.color = 'yellow';
 
     kiwi = new ball.Group();
-    kiwi.diameter = 70;
+    kiwi.diameter = windowHeight / 10;
     kiwi.img = 'assets/kiwi.png';
     kiwi.color = 'green';
 
     tomato = new ball.Group();
-    tomato.diameter = 85;
+    tomato.diameter = windowHeight / 8.5;
     tomato.img = 'assets/tomato.png';
     tomato.color = 'rgb(219,196,255)';
 
     peach = new ball.Group();
-    peach.diameter = 100;
+    peach.diameter = window / 7;
     peach.img = 'assets/peach.png';
     peach.color = 'pink';
 
-    starfruit = new ball.Group();
-    starfruit.diameter = 150;
-    starfruit.img = 'assets/starfruit.png';
-    starfruit.color = 'light yellow';
+    cantaloupe = new ball.Group();
+    cantaloupe.diameter = windowHeight / 4.8;
+    cantaloupe.img = 'assets/starfruit.png';
+    cantaloupe.color = 'light yellow';
 
     coconut = new ball.Group();
-    coconut.diameter = 185;
+    coconut.diameter = windowHeight / 3.9;
     coconut.img = 'assets/coconut.png';
     coconut.color = 'white';
 
     melon = new ball.Group();
-    melon.diameter = 200;
+    melon.diameter = windowHeight / 3.6;
     melon.img = 'assets/melon.png';
     melon.color = 'green';
 
     watermelon = new ball.Group();
-    watermelon.diameter = 250;
+    watermelon.diameter = windowHeight / 2.9;
     watermelon.img = 'assets/watermelon.png';
     watermelon.color = 'red';
 
@@ -175,83 +178,78 @@ function setupBounds() {
       "static"
     );
   
-    walls.color = 'purple';
+    walls.color = 'black';
 
   }
 
 function combine(ball1, ball2) {
-    if (ball1.diameter == 20) {
+    if (ball1.diameter == windowHeight / 26) {
         new cherry.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 2;
     }
-    if (ball1.diameter == 30) {
+    if (ball1.diameter == windowHeight / 24) {
         new orange.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 4;
     }
-    if (ball1.diameter == 45) {
+    if (ball1.diameter == windowHeight / 16) {
         new lemon.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 8;
     }
-    if (ball1.diameter == 55) {
+    if (ball1.diameter == windowHeight / 13) {
         new kiwi.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 16;
     }
 
-    if (ball1.diameter == 70) {
+    if (ball1.diameter == windowHeight / 10) {
         new tomato.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 32;
     }
 
-    if (ball1.diameter == 85) {
+    if (ball1.diameter == windowHeight / 8.5) {
         new peach.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 64;
     }
 
-    if (ball1.diameter == 100) {
-        new starfruit.Sprite(ball1.x, ball1.y);
+    if (ball1.diameter == windowHeight / 7) {
+        new cantaloupe.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 128;
     }
 
-    if (ball1.diameter == 150) {
+    if (ball1.diameter == windowHeight / 4.8) {
         new coconut.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 256;
     }
 
-    if (ball1.diameter == 185) {
+    if (ball1.diameter == windowHeight / 3.9) {
         new melon.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 1028;
     }
 
-    if (ball1.diameter == 200) {
+    if (ball1.diameter == windowHeight / 3.6) {
         new watermelon.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 2048;
+        // add animation effects ?
     }
-
-    /* if (ball1.diameter == 80) {
-        new kiwi.Sprite(ball1.x, ball1.y);
-        ball1.remove();
-        ball2.remove();
-    } */
     
 }
 
@@ -268,20 +266,7 @@ function endGame() {
 	noLoop();
     GOScreen.style.display="flex";
     id("score").innerHTML =  "your score: " + score;
-    // const data = {array: [{user:"Arissa", score:12222},{user:"Chris", score:2}]}
-    // const data = getScore();
-
-    // const player = collection(db, "players");
-    // const scoreData = query(player, orderBy("score"), limit(3));
-    // const topScores = getScore();
     getScore();
-    // console.log(topScores);
-    // getScore();
-    // let leaderboard = id("LB-list");
-    // topScores.allScores.forEach(({username, score}) => {
-    //     let li = createLi(username, score);
-    //     leaderboard.appendChild(li);
-    // });
 }
 
 async function getScore() {
@@ -294,8 +279,6 @@ async function getScore() {
         data.allScores.push(doc.data());
         // console.log(doc.data());
     });
-    // console.log(data);
-    // return data;
     let leaderboard = id("LB-list");
     data.allScores.forEach(({username, score}) => {
         let li = createLi(username, score);
@@ -305,12 +288,41 @@ async function getScore() {
 
 
 function startGame() {
-    text("your score = " + score, width - 100, height / 25);
+    fill('red');
+    textSize(windowHeight / 70);
+    text("combine as many fruits as you can without touching the line!", width / 50, height / 40);
+    text("hold click to preview, release to drop fruits! ", width / 50, height / 25);
+    textSize(windowHeight / 50);
+    fill('black');
+    text("your score = " + score, width / 50, height / 9);
     var fruit = getRandom();
+    // console.log("fruit" + fruit);
+    // console.log("current is cleared: " + current);
 
+    // console.log("current is:" + current);
+    // let dropped = false;
+    // new fruit.Sprite(mouse.x,  height/4);
+    // fruit.collder = 'static';
+    //while (dropped == false) {
+    /*    current = new fruit.Sprite(mouse.x,  height/4, 'kinetic');
+        if (mouse.presses()) {
+            current.moveTo(mouse, 8);
+        }
+    //}
+    */
+    // fruit.moveTowards(mouse, 0.10);
+    // fruitPreview(fruit);
+    
     if (mouse.presses()) {
-       new fruit.Sprite(mouse.x,  height/4);
+        current = fruit;
+        preview = new fruit.Sprite(width - (width / 8), height / 20, 'static')
+    }
+    if (mouse.released()) {
+        preview.remove();
+        new current.Sprite(mouse.x,  height/4);
+        // dropFruit(fruit, current)
     } 
+
 
     if (ball.overlaps(outLine, endGame));
 
@@ -329,7 +341,7 @@ window.draw = () => {
     kiwi.overlaps(kiwi, combine);
     tomato.overlaps(tomato, combine);
     peach.overlaps(peach, combine);
-    starfruit.overlaps(starfruit, combine);
+    cantaloupe.overlaps(cantaloupe, combine);
     coconut.overlaps(coconut, combine);
     melon.overlaps(melon, combine);
 };
