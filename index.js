@@ -15302,11 +15302,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = uh(app);
 
+
+
 // sends score and username information to database
 async function sendScore(username) {
-    // console.log("in send score")
-    // let username = id('UserName').value;
-    // console.log(username)
     try {
         const docRef = await Xl(Ja(db, "players"), {
           username: username,
@@ -15368,7 +15367,7 @@ window.addEventListener('load',() => {
 // game setup 
 window.setup = () => {
     createCanvas(1 + windowHeight / 2, windowHeight);
-    world.gravity.y = 10;
+    world.gravity.y = 15;
 
     floor = new Sprite();
     floor.y = height;
@@ -15394,58 +15393,69 @@ window.setup = () => {
     // ball.stroke = 'none';
 
     grape = new ball.Group();
-    grape.diameter = windowHeight / 26;
+    grape.diameter = 2048;
     grape.img = 'assets/grape.png';
+    grape.scale = (windowHeight / 36) / 2048 ;
     grape.color = 'purple';
 
     cherry = new ball.Group();
-    cherry.diameter = windowHeight / 24;
+    cherry.diameter = 2048;
     cherry.img = 'assets/cherry.png';
+    cherry.scale = (windowHeight / 24) / 2048;
     cherry.color = 'red';
 
     orange = new ball.Group();
-    orange.diameter = windowHeight / 16;
+    orange.diameter = 2048;
     orange.img = 'assets/orange.png';
+    orange.scale = (windowHeight / 16) / 2048;
     orange.color = 'orange';
 
     lemon = new ball.Group();
-    lemon.diameter = windowHeight / 13;
+    lemon.diameter = 2048;
     lemon.img = 'assets/lemon.png';
+    lemon.scale = (windowHeight / 13) / 2048;
     lemon.color = 'yellow';
 
     kiwi = new ball.Group();
-    kiwi.diameter = windowHeight / 10;
+    kiwi.diameter = 2048;
     kiwi.img = 'assets/kiwi.png';
+    kiwi.scale = (windowHeight / 10) / 2048;
     kiwi.color = 'green';
 
     tomato = new ball.Group();
-    tomato.diameter = windowHeight / 8.5;
+    tomato.diameter = 2048;
     tomato.img = 'assets/tomato.png';
+    tomato.scale = (windowHeight / 8.5) / 2048;
     tomato.color = 'rgb(219,196,255)';
 
     peach = new ball.Group();
-    peach.diameter = window / 7;
+    peach.diameter = 2048;
     peach.img = 'assets/peach.png';
+    peach.scale = (windowHeight / 7) / 2048;
     peach.color = 'pink';
 
     cantaloupe = new ball.Group();
-    cantaloupe.diameter = windowHeight / 4.8;
-    cantaloupe.img = 'assets/starfruit.png';
+    cantaloupe.diameter = 2048;
+    cantaloupe.img = 'assets/cantaloupe.png';
+    cantaloupe.scale = (windowHeight / 4.8) / 2048;
     cantaloupe.color = 'light yellow';
 
     coconut = new ball.Group();
-    coconut.diameter = windowHeight / 3.9;
+    coconut.diameter = 2048;
     coconut.img = 'assets/coconut.png';
+    coconut.scale = (windowHeight / 3.9) / 2048;
     coconut.color = 'white';
 
     melon = new ball.Group();
-    melon.diameter = windowHeight / 3.6;
+    melon.diameter = 2048;
     melon.img = 'assets/melon.png';
+    melon.scale = (windowHeight / 3.6) / 2048;
     melon.color = 'green';
 
     watermelon = new ball.Group();
-    watermelon.diameter = windowHeight / 2.9;
+    watermelon.diameter = 2048;
     watermelon.img = 'assets/watermelon.png';
+    watermelon.scale = (windowHeight / 2.9) / 2048;
     watermelon.color = 'red';
 
 };
@@ -15467,67 +15477,67 @@ function setupBounds() {
   }
 
 function combine(ball1, ball2) {
-    if (ball1.diameter == windowHeight / 26) {
+    if (ball1.scale == (windowHeight / 36) / 2048) {
         new cherry.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 2;
     }
-    if (ball1.diameter == windowHeight / 24) {
+    if (ball1.scale == (windowHeight / 24) / 2048) {
         new orange.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 4;
     }
-    if (ball1.diameter == windowHeight / 16) {
+    if (ball1.scale == (windowHeight / 16) / 2048) {
         new lemon.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 8;
     }
-    if (ball1.diameter == windowHeight / 13) {
+    if (ball1.scale == (windowHeight / 13) / 2048) {
         new kiwi.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 16;
     }
 
-    if (ball1.diameter == windowHeight / 10) {
+    if (ball1.scale == (windowHeight / 10) / 2048) {
         new tomato.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 32;
     }
 
-    if (ball1.diameter == windowHeight / 8.5) {
+    if (ball1.scale == (windowHeight / 8.5) / 2048) {
         new peach.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 64;
     }
 
-    if (ball1.diameter == windowHeight / 7) {
+    if (ball1.scale == (windowHeight / 7) / 2048) {
         new cantaloupe.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 128;
     }
 
-    if (ball1.diameter == windowHeight / 4.8) {
+    if (ball1.scale == (windowHeight / 4.8) / 2048) {
         new coconut.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 256;
     }
 
-    if (ball1.diameter == windowHeight / 3.9) {
+    if (ball1.scale == (windowHeight / 3.9) / 2048) {
         new melon.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
         score += 1028;
     }
 
-    if (ball1.diameter == windowHeight / 3.6) {
+    if (ball1.scale == (windowHeight / 3.6) / 2048) {
         new watermelon.Sprite(ball1.x, ball1.y);
         ball1.remove();
         ball2.remove();
@@ -15580,28 +15590,13 @@ function startGame() {
     fill('black');
     text("your score = " + score, width / 50, height / 9);
     var fruit = getRandom();
-    // console.log("fruit" + fruit);
-    // console.log("current is cleared: " + current);
-
-    // console.log("current is:" + current);
-    // let dropped = false;
-    // new fruit.Sprite(mouse.x,  height/4);
-    // fruit.collder = 'static';
-    //while (dropped == false) {
-    /*    current = new fruit.Sprite(mouse.x,  height/4, 'kinetic');
-        if (mouse.presses()) {
-            current.moveTo(mouse, 8);
-        }
-    //}
-    */
-    // fruit.moveTowards(mouse, 0.10);
-    // fruitPreview(fruit);
     
     if (mouse.presses()) {
         current = fruit;
         preview = new fruit.Sprite(width - (width / 8), height / 20, 'static');
     }
     if (mouse.released()) {
+        // console.log(current.scale)
         preview.remove();
         new current.Sprite(mouse.x,  height/4);
         // dropFruit(fruit, current)
@@ -15609,7 +15604,7 @@ function startGame() {
 
 
     if (ball.overlaps(outLine, endGame));
-
+    
 }
 
 window.draw = () => {
